@@ -278,7 +278,7 @@ class _DevicePageWidgetState extends State<DevicePageWidget> {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  'Data sent to device',
+                                  'Data envoyée au device',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
