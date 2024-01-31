@@ -125,8 +125,18 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
               showBorder: false,
             ),
             axisBounds: AxisBounds(),
-            xAxisLabelInfo: AxisLabelInfo(),
-            yAxisLabelInfo: AxisLabelInfo(),
+            xAxisLabelInfo: AxisLabelInfo(
+              title: 'esger',
+              titleTextStyle: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+            yAxisLabelInfo: AxisLabelInfo(
+              title: 'esgege',
+              titleTextStyle: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
           ),
         ),
       ],
