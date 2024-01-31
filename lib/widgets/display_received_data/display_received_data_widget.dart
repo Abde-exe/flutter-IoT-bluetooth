@@ -43,7 +43,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.receivedDataTimer = InstantTimer.periodic(
-        duration: Duration(milliseconds: 5000),
+        duration: Duration(milliseconds: 10000),
         callback: (timer) async {
           _model.receivedData = await actions.receiveData(
             widget.device!,
@@ -108,7 +108,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: Container(
-              width: 404.0,
+              width: 385.0,
               height: 400.0,
               child: Stack(
                 children: [
@@ -185,7 +185,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: Container(
-              width: 403.0,
+              width: 383.0,
               height: 400.0,
               child: Stack(
                 children: [
@@ -193,7 +193,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     data: [
                       FFLineChartData(
                         xData: _model.timeList,
-                        yData: _model.tempList,
+                        yData: _model.humidityList,
                         settings: LineChartBarData(
                           color: FlutterFlowTheme.of(context).primary,
                           barWidth: 2.0,
