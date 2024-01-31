@@ -77,7 +77,7 @@ class _SplashPageWidgetState extends State<SplashPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Bluetooth Demo',
+            'Bluetooth Test',
             style: FlutterFlowTheme.of(context).titleLarge,
           ),
           actions: [],
