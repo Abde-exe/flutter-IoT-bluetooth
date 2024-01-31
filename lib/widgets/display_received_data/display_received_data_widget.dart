@@ -84,48 +84,83 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                 fontWeight: FontWeight.w600,
               ),
         ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-          child: Text(
-            _model.tempListSTR.first,
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: 'Montserrat',
-                  lineHeight: 1.4,
-                ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-          child: Text(
-            _model.timeListSTR.first,
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: 'Montserrat',
-                  lineHeight: 1.4,
-                ),
-          ),
-        ),
-        Align(
-          alignment: AlignmentDirectional(0.0, 0.0),
-          child: Container(
-            width: 300.0,
-            height: 300.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: FlutterFlowTheme.of(context).tertiary,
-                width: 8.0,
-              ),
+        if (false)
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            child: Text(
+              _model.tempListSTR.first,
+              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                    fontFamily: 'Montserrat',
+                    lineHeight: 1.4,
+                  ),
             ),
-            child: Align(
-              alignment: AlignmentDirectional(0.0, 0.0),
-              child: Text(
-                '${_model.tempListSTR.last} °C',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Montserrat',
-                      fontSize: 43.0,
+          ),
+        if (false)
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            child: Text(
+              _model.timeListSTR.first,
+              style: FlutterFlowTheme.of(context).bodyLarge.override(
+                    fontFamily: 'Montserrat',
+                    lineHeight: 1.4,
+                  ),
+            ),
+          ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  width: 180.0,
+                  height: 180.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      width: 8.0,
                     ),
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Text(
+                      '${_model.tempListSTR.last} °C',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Montserrat',
+                            fontSize: 43.0,
+                          ),
+                    ),
+                  ),
+                ),
               ),
-            ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  width: 180.0,
+                  height: 180.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 8.0,
+                    ),
+                  ),
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Text(
+                      '${_model.tempListSTR.first} %',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Montserrat',
+                            fontSize: 43.0,
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         Flexible(
@@ -142,7 +177,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                         xData: _model.timeList,
                         yData: _model.tempList,
                         settings: LineChartBarData(
-                          color: FlutterFlowTheme.of(context).secondary,
+                          color: FlutterFlowTheme.of(context).tertiary,
                           barWidth: 2.0,
                           isCurved: true,
                         ),
@@ -160,7 +195,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                       maxY: 30.0,
                     ),
                     xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time Live Every 1 min',
+                      title: 'Time Live Every 10 Seconds',
                       titleTextStyle: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -186,7 +221,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     child: FlutterFlowChartLegendWidget(
                       entries: [
                         LegendEntry(
-                            FlutterFlowTheme.of(context).secondary, 'Temp °C'),
+                            FlutterFlowTheme.of(context).tertiary, 'Temp °C'),
                       ],
                       width: 100.0,
                       height: 50.0,
@@ -236,7 +271,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                       maxY: 100.0,
                     ),
                     xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time Live Every 1 min',
+                      title: 'Time Live Every 10 Seconds',
                       titleTextStyle: TextStyle(
                         fontSize: 14.0,
                       ),
