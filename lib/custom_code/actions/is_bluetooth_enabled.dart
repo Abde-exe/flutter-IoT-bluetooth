@@ -14,7 +14,9 @@ Future<bool> isBluetoothEnabled() async {
 
   final state = await bluetooth.state;
   if (state == BluetoothState.STATE_ON) {
+    print("Bluetooth is enabled");
     return true;
   }
+  print("Bluetooth is disabled");
   return false;
 }

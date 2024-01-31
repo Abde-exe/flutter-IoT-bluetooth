@@ -6,7 +6,8 @@ import 'index.dart'; // Imports other custom actions
 import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
-
+import 'dart:convert'; // Import for utf8 and ascii
+import 'dart:typed_data'; // Import for Uint8List
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 late BluetoothConnection
@@ -26,17 +27,17 @@ Future<bool> connectDevice(BTDeviceStruct deviceInfo) async {
 
 void sendData(String data) async {
   if (connection != null && connection.isConnected) {
-    connection.output.add(utf8.encode(data + "\r\n"));
+    // Encode the data to a Uint8List and add it to the output
+    connection.output.add(Uint8List.fromList(utf8.encode(data + "\r\n")));
     await connection.output.allSent;
     print('Data sent');
   } else {
     print('No connection established');
   }
 }
-
 void receiveData() async {
   if (connection != null) {
-    connection.input.listen((Uint8List data) {
+    connection.input?.listen((Uint8List data) {
       print('Data incoming: ${ascii.decode(data)}');
     }).onDone(() {
       print('Disconnected by remote request');
