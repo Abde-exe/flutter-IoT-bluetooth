@@ -1,5 +1,6 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -45,6 +46,16 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       connectedDevices[index] = updateFn(connectedDevices[index]);
 
   bool? isFetchingConnectedDevices = false;
+
+  List<double> tempListTodelete = [21.5, 26.8, 24.6];
+  void addToTempListTodelete(double item) => tempListTodelete.add(item);
+  void removeFromTempListTodelete(double item) => tempListTodelete.remove(item);
+  void removeAtIndexFromTempListTodelete(int index) =>
+      tempListTodelete.removeAt(index);
+  void insertAtIndexInTempListTodelete(int index, double item) =>
+      tempListTodelete.insert(index, item);
+  void updateTempListTodeleteAtIndex(int index, Function(double) updateFn) =>
+      tempListTodelete[index] = updateFn(tempListTodelete[index]);
 
   ///  State fields for stateful widgets in this page.
 

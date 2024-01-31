@@ -73,256 +73,262 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Data reçues',
-          style: FlutterFlowTheme.of(context).titleMedium.override(
-                fontFamily: 'Montserrat',
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontWeight: FontWeight.w600,
-              ),
-        ),
-        if (false)
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-            child: Text(
-              _model.tempListSTR.first,
-              style: FlutterFlowTheme.of(context).bodyLarge.override(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (false)
+            Text(
+              'Data reçues',
+              style: FlutterFlowTheme.of(context).titleMedium.override(
                     fontFamily: 'Montserrat',
-                    lineHeight: 1.4,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontWeight: FontWeight.w600,
                   ),
             ),
-          ),
-        if (false)
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-            child: Text(
-              _model.timeListSTR.first,
-              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                    fontFamily: 'Montserrat',
-                    lineHeight: 1.4,
-                  ),
-            ),
-          ),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: Container(
-                  width: 160.0,
-                  height: 160.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).tertiary,
-                      width: 8.0,
+          if (false)
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              child: Text(
+                _model.tempListSTR.first,
+                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                      fontFamily: 'Montserrat',
+                      lineHeight: 1.4,
                     ),
-                  ),
-                  child: Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      '${_model.tempListSTR.last} °C',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Montserrat',
-                            fontSize: 40.0,
-                          ),
+              ),
+            ),
+          if (false)
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              child: Text(
+                _model.timeListSTR.first,
+                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                      fontFamily: 'Montserrat',
+                      lineHeight: 1.4,
+                    ),
+              ),
+            ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: Container(
+                    width: 160.0,
+                    height: 160.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        width: 8.0,
+                      ),
+                    ),
+                    child: Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        '${_model.tempListSTR.last} °C',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Montserrat',
+                              fontSize: 40.0,
+                            ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: Container(
-                  width: 160.0,
-                  height: 160.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 8.0,
+                Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: Container(
+                    width: 160.0,
+                    height: 160.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).primary,
+                        width: 8.0,
+                      ),
                     ),
-                  ),
-                  child: Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      '${_model.humidityListSTR.first} %',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Montserrat',
-                            fontSize: 40.0,
-                          ),
+                    child: Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Text(
+                        '${_model.humidityListSTR.first} %',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Montserrat',
+                              fontSize: 40.0,
+                            ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Flexible(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-            child: Container(
-              width: 385.0,
-              height: 400.0,
-              child: Stack(
-                children: [
-                  FlutterFlowLineChart(
-                    data: [
-                      FFLineChartData(
-                        xData: _model.timeList,
-                        yData: _model.tempList,
-                        settings: LineChartBarData(
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          barWidth: 2.0,
-                          isCurved: true,
-                          belowBarData: BarAreaData(
-                            show: true,
-                            color: FlutterFlowTheme.of(context).accent3,
+          Flexible(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+              child: Container(
+                width: 385.0,
+                height: 400.0,
+                child: Stack(
+                  children: [
+                    FlutterFlowLineChart(
+                      data: [
+                        FFLineChartData(
+                          xData: _model.timeList,
+                          yData: _model.tempList,
+                          settings: LineChartBarData(
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            barWidth: 2.0,
+                            isCurved: true,
+                            belowBarData: BarAreaData(
+                              show: true,
+                              color: FlutterFlowTheme.of(context).accent3,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                    chartStylingInfo: ChartStylingInfo(
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      showGrid: true,
-                      borderColor: FlutterFlowTheme.of(context).secondaryText,
-                      borderWidth: 1.0,
-                    ),
-                    axisBounds: AxisBounds(
-                      minY: 20.0,
-                      maxY: 30.0,
-                    ),
-                    xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time Live Every 10 Seconds',
-                      titleTextStyle: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    yAxisLabelInfo: AxisLabelInfo(
-                      title: '\n',
-                      titleTextStyle: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 0.0,
-                      ),
-                      showLabels: true,
-                      labelTextStyle: TextStyle(
-                        fontSize: 10.0,
-                      ),
-                      labelInterval: 0.5,
-                      labelFormatter: LabelFormatter(
-                        numberFormat: (val) => val.toString(),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(1.0, 1.0),
-                    child: FlutterFlowChartLegendWidget(
-                      entries: [
-                        LegendEntry(
-                            FlutterFlowTheme.of(context).tertiary, 'Temp °C'),
+                        )
                       ],
-                      width: 100.0,
-                      height: 50.0,
-                      textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                      textPadding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                      borderWidth: 1.0,
-                      borderColor: Colors.black,
-                      indicatorSize: 10.0,
+                      chartStylingInfo: ChartStylingInfo(
+                        enableTooltip: true,
+                        tooltipBackgroundColor:
+                            FlutterFlowTheme.of(context).tertiary,
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        showGrid: true,
+                        borderColor: FlutterFlowTheme.of(context).secondaryText,
+                        borderWidth: 1.0,
+                      ),
+                      axisBounds: AxisBounds(
+                        minY: 20.0,
+                        maxY: 30.0,
+                      ),
+                      xAxisLabelInfo: AxisLabelInfo(
+                        title: 'Time Live Every 10 Seconds',
+                        titleTextStyle: TextStyle(
+                          fontSize: 14.0,
+                        ),
+                      ),
+                      yAxisLabelInfo: AxisLabelInfo(
+                        title: '\n',
+                        titleTextStyle: TextStyle(
+                          fontWeight: FontWeight.w100,
+                          fontSize: 0.0,
+                        ),
+                        showLabels: true,
+                        labelTextStyle: TextStyle(
+                          fontSize: 10.0,
+                        ),
+                        labelInterval: 0.5,
+                        labelFormatter: LabelFormatter(
+                          numberFormat: (val) => val.toString(),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    Align(
+                      alignment: AlignmentDirectional(1.0, 1.0),
+                      child: FlutterFlowChartLegendWidget(
+                        entries: [
+                          LegendEntry(
+                              FlutterFlowTheme.of(context).tertiary, 'Temp °C'),
+                        ],
+                        width: 100.0,
+                        height: 50.0,
+                        textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                        textPadding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                        borderWidth: 1.0,
+                        borderColor: Colors.black,
+                        indicatorSize: 10.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Flexible(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-            child: Container(
-              width: 383.0,
-              height: 400.0,
-              child: Stack(
-                children: [
-                  FlutterFlowLineChart(
-                    data: [
-                      FFLineChartData(
-                        xData: _model.timeList,
-                        yData: _model.humidityList,
-                        settings: LineChartBarData(
-                          color: FlutterFlowTheme.of(context).primary,
-                          barWidth: 2.0,
-                          belowBarData: BarAreaData(
-                            show: true,
-                            color: FlutterFlowTheme.of(context).accent1,
+          Flexible(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+              child: Container(
+                width: 383.0,
+                height: 400.0,
+                child: Stack(
+                  children: [
+                    FlutterFlowLineChart(
+                      data: [
+                        FFLineChartData(
+                          xData: _model.timeList,
+                          yData: _model.humidityList,
+                          settings: LineChartBarData(
+                            color: FlutterFlowTheme.of(context).primary,
+                            barWidth: 2.0,
+                            belowBarData: BarAreaData(
+                              show: true,
+                              color: FlutterFlowTheme.of(context).accent1,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                    chartStylingInfo: ChartStylingInfo(
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      showGrid: true,
-                      borderColor: FlutterFlowTheme.of(context).secondaryText,
-                      borderWidth: 1.0,
-                    ),
-                    axisBounds: AxisBounds(
-                      minY: 0.0,
-                      maxY: 100.0,
-                    ),
-                    xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time Live Every 10 Seconds',
-                      titleTextStyle: TextStyle(
-                        fontSize: 14.0,
-                      ),
-                    ),
-                    yAxisLabelInfo: AxisLabelInfo(
-                      showLabels: true,
-                      labelTextStyle: TextStyle(
-                        fontSize: 10.0,
-                      ),
-                      labelInterval: 10.0,
-                      labelFormatter: LabelFormatter(
-                        numberFormat: (val) => val.toString(),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(1.0, 1.0),
-                    child: FlutterFlowChartLegendWidget(
-                      entries: [
-                        LegendEntry(
-                            FlutterFlowTheme.of(context).primary, 'Humidity %'),
+                        )
                       ],
-                      width: 100.0,
-                      height: 50.0,
-                      textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                      textPadding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                      borderWidth: 1.0,
-                      borderColor: Colors.black,
-                      indicatorSize: 10.0,
+                      chartStylingInfo: ChartStylingInfo(
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        showGrid: true,
+                        borderColor: FlutterFlowTheme.of(context).secondaryText,
+                        borderWidth: 1.0,
+                      ),
+                      axisBounds: AxisBounds(
+                        minY: 0.0,
+                        maxY: 100.0,
+                      ),
+                      xAxisLabelInfo: AxisLabelInfo(
+                        title: 'Time Live Every 10 Seconds',
+                        titleTextStyle: TextStyle(
+                          fontSize: 14.0,
+                        ),
+                      ),
+                      yAxisLabelInfo: AxisLabelInfo(
+                        showLabels: true,
+                        labelTextStyle: TextStyle(
+                          fontSize: 10.0,
+                        ),
+                        labelInterval: 10.0,
+                        labelFormatter: LabelFormatter(
+                          numberFormat: (val) => val.toString(),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    Align(
+                      alignment: AlignmentDirectional(1.0, 1.0),
+                      child: FlutterFlowChartLegendWidget(
+                        entries: [
+                          LegendEntry(FlutterFlowTheme.of(context).primary,
+                              'Humidity %'),
+                        ],
+                        width: 100.0,
+                        height: 50.0,
+                        textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                        textPadding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                        borderWidth: 1.0,
+                        borderColor: Colors.black,
+                        indicatorSize: 10.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

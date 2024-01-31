@@ -1,5 +1,6 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -172,6 +173,106 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 32.0, 0.0, 0.0),
+                                    child: Container(
+                                      width: 385.0,
+                                      height: 400.0,
+                                      child: Stack(
+                                        children: [
+                                          FlutterFlowLineChart(
+                                            data: [
+                                              FFLineChartData(
+                                                xData: _model.tempListTodelete,
+                                                yData: _model.tempListTodelete,
+                                                settings: LineChartBarData(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                  barWidth: 2.0,
+                                                  isCurved: true,
+                                                  belowBarData: BarAreaData(
+                                                    show: true,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent3,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                            chartStylingInfo: ChartStylingInfo(
+                                              enableTooltip: true,
+                                              tooltipBackgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              showGrid: true,
+                                              borderColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              borderWidth: 1.0,
+                                            ),
+                                            axisBounds: AxisBounds(
+                                              minY: 20.0,
+                                              maxY: 30.0,
+                                            ),
+                                            xAxisLabelInfo: AxisLabelInfo(
+                                              title:
+                                                  'Time Live Every 10 Seconds',
+                                              titleTextStyle: TextStyle(
+                                                fontSize: 14.0,
+                                              ),
+                                            ),
+                                            yAxisLabelInfo: AxisLabelInfo(
+                                              title: '\n',
+                                              titleTextStyle: TextStyle(
+                                                fontWeight: FontWeight.w100,
+                                                fontSize: 0.0,
+                                              ),
+                                              showLabels: true,
+                                              labelTextStyle: TextStyle(
+                                                fontSize: 10.0,
+                                              ),
+                                              labelInterval: 0.5,
+                                              labelFormatter: LabelFormatter(
+                                                numberFormat: (val) =>
+                                                    val.toString(),
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(1.0, 1.0),
+                                            child: FlutterFlowChartLegendWidget(
+                                              entries: [
+                                                LegendEntry(
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                    'Temp °C'),
+                                              ],
+                                              width: 100.0,
+                                              height: 50.0,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                              textPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              borderWidth: 1.0,
+                                              borderColor: Colors.black,
+                                              indicatorSize: 10.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 SingleChildScrollView(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
