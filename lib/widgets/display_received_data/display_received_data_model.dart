@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -25,6 +26,24 @@ class DisplayReceivedDataModel
       dataList.insert(index, item);
   void updateDataListAtIndex(int index, Function(String) updateFn) =>
       dataList[index] = updateFn(dataList[index]);
+
+  List<String> humidityList = [];
+  void addToHumidityList(String item) => humidityList.add(item);
+  void removeFromHumidityList(String item) => humidityList.remove(item);
+  void removeAtIndexFromHumidityList(int index) => humidityList.removeAt(index);
+  void insertAtIndexInHumidityList(int index, String item) =>
+      humidityList.insert(index, item);
+  void updateHumidityListAtIndex(int index, Function(String) updateFn) =>
+      humidityList[index] = updateFn(humidityList[index]);
+
+  List<String> tempList = [];
+  void addToTempList(String item) => tempList.add(item);
+  void removeFromTempList(String item) => tempList.remove(item);
+  void removeAtIndexFromTempList(int index) => tempList.removeAt(index);
+  void insertAtIndexInTempList(int index, String item) =>
+      tempList.insert(index, item);
+  void updateTempListAtIndex(int index, Function(String) updateFn) =>
+      tempList[index] = updateFn(tempList[index]);
 
   ///  State fields for stateful widgets in this component.
 

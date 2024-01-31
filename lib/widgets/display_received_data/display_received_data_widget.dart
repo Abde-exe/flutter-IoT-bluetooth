@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -49,6 +50,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           );
           setState(() {
             _model.dataList = _model.receivedData!.toList().cast<String>();
+            _model.addToHumidityList(_model.receivedData!.first);
+            _model.addToTempList(_model.receivedData!.last);
           });
         },
         startImmediately: true,
@@ -95,6 +98,35 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
                 ),
+          ),
+        ),
+        Container(
+          width: 370.0,
+          height: 230.0,
+          child: FlutterFlowLineChart(
+            data: [
+              FFLineChartData(
+                xData: _model.humidityList,
+                yData: _model.tempList,
+                settings: LineChartBarData(
+                  color: FlutterFlowTheme.of(context).primary,
+                  barWidth: 2.0,
+                  isCurved: true,
+                  dotData: FlDotData(show: false),
+                  belowBarData: BarAreaData(
+                    show: true,
+                    color: FlutterFlowTheme.of(context).accent1,
+                  ),
+                ),
+              )
+            ],
+            chartStylingInfo: ChartStylingInfo(
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              showBorder: false,
+            ),
+            axisBounds: AxisBounds(),
+            xAxisLabelInfo: AxisLabelInfo(),
+            yAxisLabelInfo: AxisLabelInfo(),
           ),
         ),
       ],
