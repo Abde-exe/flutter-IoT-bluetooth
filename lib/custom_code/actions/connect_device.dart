@@ -9,31 +9,39 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+late BluetoothConnection
+    connection; // Global variable for the Bluetooth connection
+
 Future<bool> connectDevice(BTDeviceStruct deviceInfo) async {
   final device = BluetoothDevice(address: deviceInfo.id, name: deviceInfo.name);
   try {
-    await BluetoothConnection.toAddress(device.address).then((connection) {
-      print('Connected to the device');
-      // Save the connection instance
-    });
+    connection = await BluetoothConnection.toAddress(device.address);
+    print('Connected to the device');
+    return true; // Return true if connection is successful
   } catch (e) {
     print(e);
+    return false; // Return false if connection fails
   }
-  return true;
 }
 
 void sendData(String data) async {
-  // Send data to the device
-  connection.output.add(utf8.encode(data + "\r\n"));
-  await connection.output.allSent;
-  print('Data sent');
+  if (connection != null && connection.isConnected) {
+    connection.output.add(utf8.encode(data + "\r\n"));
+    await connection.output.allSent;
+    print('Data sent');
+  } else {
+    print('No connection established');
+  }
 }
 
 void receiveData() async {
-  // Receive data from the device
-  connection.input.listen((Uint8List data) {
-    print('Data incoming: ${ascii.decode(data)}');
-  }).onDone(() {
-    print('Disconnected by remote request');
-  });
+  if (connection != null) {
+    connection.input.listen((Uint8List data) {
+      print('Data incoming: ${ascii.decode(data)}');
+    }).onDone(() {
+      print('Disconnected by remote request');
+    });
+  } else {
+    print('No connection established');
+  }
 }
