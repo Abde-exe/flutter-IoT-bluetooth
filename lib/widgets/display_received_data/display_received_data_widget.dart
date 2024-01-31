@@ -105,7 +105,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Flexible(
           child: Container(
             width: 404.0,
-            height: 600.0,
+            height: 400.0,
             child: FlutterFlowLineChart(
               data: [
                 FFLineChartData(
