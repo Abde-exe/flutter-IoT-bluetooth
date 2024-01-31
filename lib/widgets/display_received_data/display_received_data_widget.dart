@@ -129,9 +129,10 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       '${_model.tempListSTR.last} °C',
+                      textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Montserrat',
-                            fontSize: 43.0,
+                            fontSize: 40.0,
                           ),
                     ),
                   ),
@@ -153,9 +154,10 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       '${_model.humidityListSTR.first} %',
+                      textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Montserrat',
-                            fontSize: 43.0,
+                            fontSize: 40.0,
                           ),
                     ),
                   ),
