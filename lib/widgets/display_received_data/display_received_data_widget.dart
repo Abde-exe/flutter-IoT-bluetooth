@@ -55,7 +55,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToTempList(double.parse(_model.receivedData!.last));
             _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
             _model.addToTimeList(getCurrentTimestamp);
-            _model.addToHumidityList(double.parse(_model.receivedData!.last));
+            _model.addToHumidityList(double.parse(_model.receivedData!.first));
           });
         },
         startImmediately: true,
@@ -102,6 +102,30 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
                 ),
+          ),
+        ),
+        Align(
+          alignment: AlignmentDirectional(0.0, 0.0),
+          child: Container(
+            width: 300.0,
+            height: 300.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: FlutterFlowTheme.of(context).tertiary,
+                width: 8.0,
+              ),
+            ),
+            child: Align(
+              alignment: AlignmentDirectional(0.0, 0.0),
+              child: Text(
+                '${_model.tempListSTR.last} °C',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Montserrat',
+                      fontSize: 43.0,
+                    ),
+              ),
+            ),
           ),
         ),
         Flexible(
