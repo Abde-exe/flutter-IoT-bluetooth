@@ -49,6 +49,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           );
           setState(() {
             _model.data = _model.receivedData;
+            _model.addToDataList(_model.receivedData!);
           });
         },
         startImmediately: true,
@@ -84,6 +85,16 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
               _model.data,
               '-',
             ),
+            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                  fontFamily: 'Montserrat',
+                  lineHeight: 1.4,
+                ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+          child: Text(
+            _model.dataList.length.toString(),
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,

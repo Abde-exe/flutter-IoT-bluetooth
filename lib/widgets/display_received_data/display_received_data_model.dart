@@ -17,6 +17,15 @@ class DisplayReceivedDataModel
 
   String? data;
 
+  List<String> dataList = [];
+  void addToDataList(String item) => dataList.add(item);
+  void removeFromDataList(String item) => dataList.remove(item);
+  void removeAtIndexFromDataList(int index) => dataList.removeAt(index);
+  void insertAtIndexInDataList(int index, String item) =>
+      dataList.insert(index, item);
+  void updateDataListAtIndex(int index, Function(String) updateFn) =>
+      dataList[index] = updateFn(dataList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   InstantTimer? receivedDataTimer;
