@@ -55,8 +55,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToTempList(double.parse(_model.receivedData!.last));
             _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
             _model.addToTimeList(getCurrentTimestamp);
-            _model.addToHumidityList(
-                double.parse(_model.receivedData!.last) * 100);
+            _model.addToHumidityList(double.parse(_model.receivedData!.last));
           });
         },
         startImmediately: true,
@@ -137,7 +136,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                       maxY: 30.0,
                     ),
                     xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time Live Every 5 Seconds',
+                      title: 'Time Live Every 1 min',
                       titleTextStyle: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -186,7 +185,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: Container(
-              width: 350.0,
+              width: 403.0,
               height: 400.0,
               child: Stack(
                 children: [
@@ -213,7 +212,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                       maxY: 100.0,
                     ),
                     xAxisLabelInfo: AxisLabelInfo(
-                      title: 'Time',
+                      title: 'Time Live Every 1 min',
                       titleTextStyle: TextStyle(
                         fontSize: 14.0,
                       ),
@@ -225,10 +224,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                       ),
                       labelInterval: 10.0,
                       labelFormatter: LabelFormatter(
-                        numberFormat: (val) => formatNumber(
-                          val,
-                          formatType: FormatType.percent,
-                        ),
+                        numberFormat: (val) => val.toString(),
                       ),
                     ),
                   ),
@@ -237,7 +233,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     child: FlutterFlowChartLegendWidget(
                       entries: [
                         LegendEntry(
-                            FlutterFlowTheme.of(context).primary, 'Humidity'),
+                            FlutterFlowTheme.of(context).primary, 'Humidity %'),
                       ],
                       width: 100.0,
                       height: 50.0,
