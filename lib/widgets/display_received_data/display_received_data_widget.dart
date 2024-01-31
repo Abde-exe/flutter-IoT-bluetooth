@@ -55,7 +55,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToTempList(double.parse(_model.receivedData!.last));
             _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
             _model.addToTimeList(getCurrentTimestamp);
-            _model.addToHumidityList(double.parse(_model.receivedData!.last));
+            _model.addToHumidityList(
+                double.parse(_model.receivedData!.last) * 100);
           });
         },
         startImmediately: true,
@@ -110,45 +111,73 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             child: Container(
               width: 404.0,
               height: 400.0,
-              child: FlutterFlowLineChart(
-                data: [
-                  FFLineChartData(
-                    xData: _model.timeList,
-                    yData: _model.tempList,
-                    settings: LineChartBarData(
-                      color: FlutterFlowTheme.of(context).primary,
-                      barWidth: 2.0,
+              child: Stack(
+                children: [
+                  FlutterFlowLineChart(
+                    data: [
+                      FFLineChartData(
+                        xData: _model.timeList,
+                        yData: _model.tempList,
+                        settings: LineChartBarData(
+                          color: FlutterFlowTheme.of(context).secondary,
+                          barWidth: 2.0,
+                          isCurved: true,
+                        ),
+                      )
+                    ],
+                    chartStylingInfo: ChartStylingInfo(
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      showGrid: true,
+                      borderColor: FlutterFlowTheme.of(context).secondaryText,
+                      borderWidth: 1.0,
                     ),
-                  )
+                    axisBounds: AxisBounds(
+                      minY: 20.0,
+                      maxY: 30.0,
+                    ),
+                    xAxisLabelInfo: AxisLabelInfo(
+                      title: 'Time Live Every 5 Seconds',
+                      titleTextStyle: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    yAxisLabelInfo: AxisLabelInfo(
+                      title: '\n',
+                      titleTextStyle: TextStyle(
+                        fontWeight: FontWeight.w100,
+                        fontSize: 0.0,
+                      ),
+                      showLabels: true,
+                      labelTextStyle: TextStyle(
+                        fontSize: 10.0,
+                      ),
+                      labelInterval: 0.5,
+                      labelFormatter: LabelFormatter(
+                        numberFormat: (val) => val.toString(),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(1.0, 1.0),
+                    child: FlutterFlowChartLegendWidget(
+                      entries: [
+                        LegendEntry(
+                            FlutterFlowTheme.of(context).secondary, 'Temp °C'),
+                      ],
+                      width: 100.0,
+                      height: 50.0,
+                      textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                      textPadding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                      borderWidth: 1.0,
+                      borderColor: Colors.black,
+                      indicatorSize: 10.0,
+                    ),
+                  ),
                 ],
-                chartStylingInfo: ChartStylingInfo(
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
-                  showGrid: true,
-                  borderColor: FlutterFlowTheme.of(context).secondaryText,
-                  borderWidth: 1.0,
-                ),
-                axisBounds: AxisBounds(
-                  minY: 20.0,
-                  maxY: 30.0,
-                ),
-                xAxisLabelInfo: AxisLabelInfo(
-                  title: 'Time',
-                  titleTextStyle: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-                yAxisLabelInfo: AxisLabelInfo(
-                  title: 'Temp',
-                  titleTextStyle: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                  showLabels: true,
-                  labelInterval: 0.5,
-                  labelFormatter: LabelFormatter(
-                    numberFormat: (val) => val.toString(),
-                  ),
-                ),
               ),
             ),
           ),
@@ -157,50 +186,72 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
             child: Container(
-              width: 404.0,
+              width: 350.0,
               height: 400.0,
-              child: FlutterFlowLineChart(
-                data: [
-                  FFLineChartData(
-                    xData: _model.timeList,
-                    yData: _model.tempList,
-                    settings: LineChartBarData(
-                      color: FlutterFlowTheme.of(context).primary,
-                      barWidth: 2.0,
+              child: Stack(
+                children: [
+                  FlutterFlowLineChart(
+                    data: [
+                      FFLineChartData(
+                        xData: _model.timeList,
+                        yData: _model.tempList,
+                        settings: LineChartBarData(
+                          color: FlutterFlowTheme.of(context).primary,
+                          barWidth: 2.0,
+                        ),
+                      )
+                    ],
+                    chartStylingInfo: ChartStylingInfo(
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      showGrid: true,
+                      borderColor: FlutterFlowTheme.of(context).secondaryText,
+                      borderWidth: 1.0,
                     ),
-                  )
+                    axisBounds: AxisBounds(
+                      minY: 0.0,
+                      maxY: 100.0,
+                    ),
+                    xAxisLabelInfo: AxisLabelInfo(
+                      title: 'Time',
+                      titleTextStyle: TextStyle(
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    yAxisLabelInfo: AxisLabelInfo(
+                      showLabels: true,
+                      labelTextStyle: TextStyle(
+                        fontSize: 10.0,
+                      ),
+                      labelInterval: 10.0,
+                      labelFormatter: LabelFormatter(
+                        numberFormat: (val) => formatNumber(
+                          val,
+                          formatType: FormatType.percent,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(1.0, 1.0),
+                    child: FlutterFlowChartLegendWidget(
+                      entries: [
+                        LegendEntry(
+                            FlutterFlowTheme.of(context).primary, 'Humidity'),
+                      ],
+                      width: 100.0,
+                      height: 50.0,
+                      textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                      textPadding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                      borderWidth: 1.0,
+                      borderColor: Colors.black,
+                      indicatorSize: 10.0,
+                    ),
+                  ),
                 ],
-                chartStylingInfo: ChartStylingInfo(
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
-                  showGrid: true,
-                  borderColor: FlutterFlowTheme.of(context).secondaryText,
-                  borderWidth: 1.0,
-                ),
-                axisBounds: AxisBounds(
-                  minY: 0.0,
-                  maxY: 100.0,
-                ),
-                xAxisLabelInfo: AxisLabelInfo(
-                  title: 'Time',
-                  titleTextStyle: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-                yAxisLabelInfo: AxisLabelInfo(
-                  title: 'Temp',
-                  titleTextStyle: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                  showLabels: true,
-                  labelInterval: 10.0,
-                  labelFormatter: LabelFormatter(
-                    numberFormat: (val) => formatNumber(
-                      val,
-                      formatType: FormatType.percent,
-                    ),
-                  ),
-                ),
               ),
             ),
           ),
