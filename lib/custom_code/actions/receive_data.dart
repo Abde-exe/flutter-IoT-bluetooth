@@ -18,7 +18,7 @@ Future<List<String>?> receiveData(BTDeviceStruct deviceInfo) async {
       final isNotify = characteristic.properties.notify;
       if (isRead && isNotify) {
         final value = await characteristic.read();
-        returnValue = String.fromCharCodes(value);
+        String returnValue = String.fromCharCodes(value);
         return returnValue.split(';');
       }
     }
