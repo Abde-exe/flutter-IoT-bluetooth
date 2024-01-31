@@ -43,7 +43,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.receivedDataTimer = InstantTimer.periodic(
-        duration: Duration(milliseconds: 1000),
+        duration: Duration(milliseconds: 5000),
         callback: (timer) async {
           _model.receivedData = await actions.receiveData(
             widget.device!,
@@ -95,7 +95,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.humidityList.first,
+            _model.timeList.first.toString(),
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -103,47 +103,51 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           ),
         ),
         Flexible(
-          child: Container(
-            width: 404.0,
-            height: 400.0,
-            child: FlutterFlowLineChart(
-              data: [
-                FFLineChartData(
-                  xData: _model.timeList,
-                  yData: _model.tempList,
-                  settings: LineChartBarData(
-                    color: FlutterFlowTheme.of(context).primary,
-                    barWidth: 2.0,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+            child: Container(
+              width: 404.0,
+              height: 400.0,
+              child: FlutterFlowLineChart(
+                data: [
+                  FFLineChartData(
+                    xData: _model.timeList,
+                    yData: _model.tempList,
+                    settings: LineChartBarData(
+                      color: FlutterFlowTheme.of(context).primary,
+                      barWidth: 2.0,
+                    ),
+                  )
+                ],
+                chartStylingInfo: ChartStylingInfo(
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                  showGrid: true,
+                  borderColor: FlutterFlowTheme.of(context).secondaryText,
+                  borderWidth: 1.0,
+                ),
+                axisBounds: AxisBounds(
+                  minY: 20.0,
+                  maxY: 30.0,
+                ),
+                xAxisLabelInfo: AxisLabelInfo(
+                  title: 'Time',
+                  titleTextStyle: TextStyle(
+                    fontSize: 14.0,
                   ),
-                )
-              ],
-              chartStylingInfo: ChartStylingInfo(
-                backgroundColor:
-                    FlutterFlowTheme.of(context).secondaryBackground,
-                showGrid: true,
-                borderColor: FlutterFlowTheme.of(context).secondaryText,
-                borderWidth: 1.0,
-              ),
-              axisBounds: AxisBounds(
-                maxY: 40.0,
-              ),
-              xAxisLabelInfo: AxisLabelInfo(
-                title: 'Time',
-                titleTextStyle: TextStyle(
-                  fontSize: 14.0,
+                  showLabels: true,
+                  labelInterval: 10.0,
                 ),
-                showLabels: true,
-                labelInterval: 10.0,
-              ),
-              yAxisLabelInfo: AxisLabelInfo(
-                title: 'Temp',
-                titleTextStyle: TextStyle(
-                  fontSize: 14.0,
-                ),
-                showLabels: true,
-                labelInterval: 5.0,
-                labelFormatter: LabelFormatter(
-                  numberFormat: (val) => val.toString(),
+                yAxisLabelInfo: AxisLabelInfo(
+                  title: 'Temp',
+                  titleTextStyle: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                  showLabels: true,
+                  labelInterval: 0.5,
+                  labelFormatter: LabelFormatter(
+                    numberFormat: (val) => val.toString(),
+                  ),
                 ),
               ),
             ),
