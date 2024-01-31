@@ -53,7 +53,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToTempListSTR(
                 (double.parse(_model.receivedData!.last)).toString());
             _model.addToTempList(double.parse(_model.receivedData!.last));
-            _model.addToTimeList(dateTimeFormat('Hm', getCurrentTimestamp));
+            _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
+            _model.addToTimeList(getCurrentTimestamp);
           });
         },
         startImmediately: true,
@@ -95,7 +96,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.timeList.first,
+            _model.timeListSTR.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -135,8 +136,6 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                   titleTextStyle: TextStyle(
                     fontSize: 14.0,
                   ),
-                  showLabels: true,
-                  labelInterval: 10.0,
                 ),
                 yAxisLabelInfo: AxisLabelInfo(
                   title: 'Temp',

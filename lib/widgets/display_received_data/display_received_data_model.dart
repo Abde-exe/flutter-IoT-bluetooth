@@ -36,14 +36,14 @@ class DisplayReceivedDataModel
   void updateTempListSTRAtIndex(int index, Function(String) updateFn) =>
       tempListSTR[index] = updateFn(tempListSTR[index]);
 
-  List<String> timeList = [];
-  void addToTimeList(String item) => timeList.add(item);
-  void removeFromTimeList(String item) => timeList.remove(item);
-  void removeAtIndexFromTimeList(int index) => timeList.removeAt(index);
-  void insertAtIndexInTimeList(int index, String item) =>
-      timeList.insert(index, item);
-  void updateTimeListAtIndex(int index, Function(String) updateFn) =>
-      timeList[index] = updateFn(timeList[index]);
+  List<String> timeListSTR = [];
+  void addToTimeListSTR(String item) => timeListSTR.add(item);
+  void removeFromTimeListSTR(String item) => timeListSTR.remove(item);
+  void removeAtIndexFromTimeListSTR(int index) => timeListSTR.removeAt(index);
+  void insertAtIndexInTimeListSTR(int index, String item) =>
+      timeListSTR.insert(index, item);
+  void updateTimeListSTRAtIndex(int index, Function(String) updateFn) =>
+      timeListSTR[index] = updateFn(timeListSTR[index]);
 
   List<double> tempList = [];
   void addToTempList(double item) => tempList.add(item);
@@ -53,6 +53,15 @@ class DisplayReceivedDataModel
       tempList.insert(index, item);
   void updateTempListAtIndex(int index, Function(double) updateFn) =>
       tempList[index] = updateFn(tempList[index]);
+
+  List<DateTime> timeList = [];
+  void addToTimeList(DateTime item) => timeList.add(item);
+  void removeFromTimeList(DateTime item) => timeList.remove(item);
+  void removeAtIndexFromTimeList(int index) => timeList.removeAt(index);
+  void insertAtIndexInTimeList(int index, DateTime item) =>
+      timeList.insert(index, item);
+  void updateTimeListAtIndex(int index, Function(DateTime) updateFn) =>
+      timeList[index] = updateFn(timeList[index]);
 
   ///  State fields for stateful widgets in this component.
 
