@@ -52,8 +52,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToHumidityList(_model.receivedData!.first);
             _model.addToTempListSTR(
                 (double.parse(_model.receivedData!.last)).toString());
-            _model.addToTimeList(dateTimeFromSecondsSinceEpoch(
-                getCurrentTimestamp.secondsSinceEpoch));
+            _model.addToTimeList(getCurrentTimestamp);
             _model.addToTempList(double.parse(_model.receivedData!.last));
           });
         },
@@ -96,7 +95,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.tempListSTR.first,
+            _model.humidityList.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -105,8 +104,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         ),
         Flexible(
           child: Container(
-            width: 370.0,
-            height: 230.0,
+            width: 404.0,
+            height: 600.0,
             child: FlutterFlowLineChart(
               data: [
                 FFLineChartData(
@@ -121,19 +120,30 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
               chartStylingInfo: ChartStylingInfo(
                 backgroundColor:
                     FlutterFlowTheme.of(context).secondaryBackground,
-                showBorder: false,
+                showGrid: true,
+                borderColor: FlutterFlowTheme.of(context).secondaryText,
+                borderWidth: 1.0,
               ),
-              axisBounds: AxisBounds(),
+              axisBounds: AxisBounds(
+                maxY: 40.0,
+              ),
               xAxisLabelInfo: AxisLabelInfo(
-                title: 'esger',
+                title: 'Time',
                 titleTextStyle: TextStyle(
                   fontSize: 14.0,
                 ),
+                showLabels: true,
+                labelInterval: 10.0,
               ),
               yAxisLabelInfo: AxisLabelInfo(
-                title: 'esgege',
+                title: 'Temp',
                 titleTextStyle: TextStyle(
                   fontSize: 14.0,
+                ),
+                showLabels: true,
+                labelInterval: 5.0,
+                labelFormatter: LabelFormatter(
+                  numberFormat: (val) => val.toString(),
                 ),
               ),
             ),
