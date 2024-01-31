@@ -30,7 +30,7 @@ class DisplayReceivedDataModel
 
   InstantTimer? receivedDataTimer;
   // Stores action output result for [Custom Action - receiveData] action in DisplayReceivedData widget.
-  String? receivedData;
+  List<String>? receivedData;
 
   /// Initialization and disposal methods.
 

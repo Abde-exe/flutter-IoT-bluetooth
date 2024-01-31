@@ -48,8 +48,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             widget.device!,
           );
           setState(() {
-            _model.data = _model.receivedData;
-            _model.addToDataList(_model.receivedData!);
+            _model.dataList = _model.receivedData!.toList().cast<String>();
           });
         },
         startImmediately: true,
@@ -81,10 +80,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            valueOrDefault<String>(
-              _model.data,
-              '-',
-            ),
+            _model.dataList.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -94,7 +90,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.dataList.length.toString(),
+            _model.dataList.last,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,

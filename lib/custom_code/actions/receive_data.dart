@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
-Future<String?> receiveData(BTDeviceStruct deviceInfo) async {
+Future<List<String>?> receiveData(BTDeviceStruct deviceInfo) async {
   final device = BluetoothDevice.fromId(deviceInfo.id, name: deviceInfo.name);
   final services = await device.discoverServices();
   for (BluetoothService service in services) {
@@ -18,7 +18,8 @@ Future<String?> receiveData(BTDeviceStruct deviceInfo) async {
       final isNotify = characteristic.properties.notify;
       if (isRead && isNotify) {
         final value = await characteristic.read();
-        return String.fromCharCodes(value);
+        returnValue = String.fromCharCodes(value);
+        return returnValue.split(';');
       }
     }
   }
