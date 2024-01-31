@@ -110,13 +110,13 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Container(
-                  width: 180.0,
-                  height: 180.0,
+                  width: 160.0,
+                  height: 160.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
@@ -139,8 +139,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
               Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Container(
-                  width: 180.0,
-                  height: 180.0,
+                  width: 160.0,
+                  height: 160.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
@@ -151,7 +151,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                   child: Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
-                      '${_model.tempListSTR.first} %',
+                      '${_model.humidityListSTR.first} %',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Montserrat',
                             fontSize: 43.0,
