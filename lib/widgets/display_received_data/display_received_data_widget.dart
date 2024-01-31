@@ -50,9 +50,11 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           );
           setState(() {
             _model.addToHumidityList(_model.receivedData!.first);
-            _model.addToTempList(_model.receivedData!.last);
+            _model.addToTempListSTR(
+                (double.parse(_model.receivedData!.last)).toString());
             _model.addToTimeList(dateTimeFromSecondsSinceEpoch(
                 getCurrentTimestamp.secondsSinceEpoch));
+            _model.addToTempList(double.parse(_model.receivedData!.last));
           });
         },
         startImmediately: true,
@@ -84,7 +86,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.tempList.first,
+            _model.tempListSTR.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -94,48 +96,45 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.tempList.first,
+            _model.tempListSTR.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
                 ),
           ),
         ),
-        Container(
-          width: 370.0,
-          height: 230.0,
-          child: FlutterFlowLineChart(
-            data: [
-              FFLineChartData(
-                xData: _model.timeList,
-                yData: _model.tempList,
-                settings: LineChartBarData(
-                  color: FlutterFlowTheme.of(context).primary,
-                  barWidth: 2.0,
-                  isCurved: true,
-                  dotData: FlDotData(show: false),
-                  belowBarData: BarAreaData(
-                    show: true,
-                    color: FlutterFlowTheme.of(context).accent1,
+        Flexible(
+          child: Container(
+            width: 370.0,
+            height: 230.0,
+            child: FlutterFlowLineChart(
+              data: [
+                FFLineChartData(
+                  xData: _model.timeList,
+                  yData: _model.tempList,
+                  settings: LineChartBarData(
+                    color: FlutterFlowTheme.of(context).primary,
+                    barWidth: 2.0,
                   ),
-                ),
-              )
-            ],
-            chartStylingInfo: ChartStylingInfo(
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-              showBorder: false,
-            ),
-            axisBounds: AxisBounds(),
-            xAxisLabelInfo: AxisLabelInfo(
-              title: 'esger',
-              titleTextStyle: TextStyle(
-                fontSize: 14.0,
+                )
+              ],
+              chartStylingInfo: ChartStylingInfo(
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                showBorder: false,
               ),
-            ),
-            yAxisLabelInfo: AxisLabelInfo(
-              title: 'esgege',
-              titleTextStyle: TextStyle(
-                fontSize: 14.0,
+              axisBounds: AxisBounds(),
+              xAxisLabelInfo: AxisLabelInfo(
+                title: 'esger',
+                titleTextStyle: TextStyle(
+                  fontSize: 14.0,
+                ),
+              ),
+              yAxisLabelInfo: AxisLabelInfo(
+                title: 'esgege',
+                titleTextStyle: TextStyle(
+                  fontSize: 14.0,
+                ),
               ),
             ),
           ),
