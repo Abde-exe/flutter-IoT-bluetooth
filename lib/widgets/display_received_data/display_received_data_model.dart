@@ -18,14 +18,15 @@ class DisplayReceivedDataModel
 
   String? data;
 
-  List<String> humidityList = [];
-  void addToHumidityList(String item) => humidityList.add(item);
-  void removeFromHumidityList(String item) => humidityList.remove(item);
-  void removeAtIndexFromHumidityList(int index) => humidityList.removeAt(index);
-  void insertAtIndexInHumidityList(int index, String item) =>
-      humidityList.insert(index, item);
-  void updateHumidityListAtIndex(int index, Function(String) updateFn) =>
-      humidityList[index] = updateFn(humidityList[index]);
+  List<String> humidityListSTR = [];
+  void addToHumidityListSTR(String item) => humidityListSTR.add(item);
+  void removeFromHumidityListSTR(String item) => humidityListSTR.remove(item);
+  void removeAtIndexFromHumidityListSTR(int index) =>
+      humidityListSTR.removeAt(index);
+  void insertAtIndexInHumidityListSTR(int index, String item) =>
+      humidityListSTR.insert(index, item);
+  void updateHumidityListSTRAtIndex(int index, Function(String) updateFn) =>
+      humidityListSTR[index] = updateFn(humidityListSTR[index]);
 
   List<String> tempListSTR = [];
   void addToTempListSTR(String item) => tempListSTR.add(item);
@@ -62,6 +63,15 @@ class DisplayReceivedDataModel
       timeList.insert(index, item);
   void updateTimeListAtIndex(int index, Function(DateTime) updateFn) =>
       timeList[index] = updateFn(timeList[index]);
+
+  List<double> humidityList = [];
+  void addToHumidityList(double item) => humidityList.add(item);
+  void removeFromHumidityList(double item) => humidityList.remove(item);
+  void removeAtIndexFromHumidityList(int index) => humidityList.removeAt(index);
+  void insertAtIndexInHumidityList(int index, double item) =>
+      humidityList.insert(index, item);
+  void updateHumidityListAtIndex(int index, Function(double) updateFn) =>
+      humidityList[index] = updateFn(humidityList[index]);
 
   ///  State fields for stateful widgets in this component.
 

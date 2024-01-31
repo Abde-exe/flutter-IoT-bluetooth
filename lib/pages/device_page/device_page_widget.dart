@@ -194,125 +194,129 @@ class _DevicePageWidgetState extends State<DevicePageWidget> {
           top: true,
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintText: 'Entrer un message...',
-                              hintStyle:
-                                  FlutterFlowTheme.of(context).labelLarge,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            child: TextFormField(
+                              controller: _model.textController,
+                              focusNode: _model.textFieldFocusNode,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: 'Entrer un message...',
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).labelLarge,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                borderRadius: BorderRadius.circular(10.0),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context).accent1,
                               ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent1,
+                              style: FlutterFlowTheme.of(context).bodyLarge,
+                              validator: _model.textControllerValidator
+                                  .asValidator(context),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyLarge,
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30.0,
-                          buttonSize: 50.0,
-                          fillColor: FlutterFlowTheme.of(context).primary,
-                          icon: Icon(
-                            Icons.send_rounded,
-                            color: Colors.white,
-                            size: 24.0,
-                          ),
-                          showLoadingIndicator: true,
-                          onPressed: () async {
-                            await actions.sendData(
-                              BTDeviceStruct(
-                                name: widget.deviceName,
-                                id: widget.deviceId,
-                                rssi: _model.currentRssi,
-                              ),
-                              _model.textController.text,
-                            );
-                            ScaffoldMessenger.of(context).clearSnackBars();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Data envoyée au device',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Montserrat',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30.0,
+                            buttonSize: 50.0,
+                            fillColor: FlutterFlowTheme.of(context).primary,
+                            icon: Icon(
+                              Icons.send_rounded,
+                              color: Colors.white,
+                              size: 24.0,
+                            ),
+                            showLoadingIndicator: true,
+                            onPressed: () async {
+                              await actions.sendData(
+                                BTDeviceStruct(
+                                  name: widget.deviceName,
+                                  id: widget.deviceId,
+                                  rssi: _model.currentRssi,
                                 ),
-                                duration: Duration(milliseconds: 2000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).success,
-                              ),
-                            );
-                          },
+                                _model.textController.text,
+                              );
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Data envoyée au device',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                  ),
+                                  duration: Duration(milliseconds: 2000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).success,
+                                ),
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.displayReceivedDataModel,
-                    updateCallback: () => setState(() {}),
-                    child: DisplayReceivedDataWidget(
-                      device: BTDeviceStruct(
-                        name: widget.deviceName,
-                        id: widget.deviceId,
-                        rssi: widget.deviceRssi,
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                    child: wrapWithModel(
+                      model: _model.displayReceivedDataModel,
+                      updateCallback: () => setState(() {}),
+                      child: DisplayReceivedDataWidget(
+                        device: BTDeviceStruct(
+                          name: widget.deviceName,
+                          id: widget.deviceId,
+                          rssi: widget.deviceRssi,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -49,12 +49,13 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             widget.device!,
           );
           setState(() {
-            _model.addToHumidityList(_model.receivedData!.first);
+            _model.addToHumidityListSTR(_model.receivedData!.first);
             _model.addToTempListSTR(
                 (double.parse(_model.receivedData!.last)).toString());
             _model.addToTempList(double.parse(_model.receivedData!.last));
             _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
             _model.addToTimeList(getCurrentTimestamp);
+            _model.addToHumidityList(double.parse(_model.receivedData!.last));
           });
         },
         startImmediately: true,
@@ -146,6 +147,58 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                   labelInterval: 0.5,
                   labelFormatter: LabelFormatter(
                     numberFormat: (val) => val.toString(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Flexible(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+            child: Container(
+              width: 404.0,
+              height: 400.0,
+              child: FlutterFlowLineChart(
+                data: [
+                  FFLineChartData(
+                    xData: _model.timeList,
+                    yData: _model.tempList,
+                    settings: LineChartBarData(
+                      color: FlutterFlowTheme.of(context).primary,
+                      barWidth: 2.0,
+                    ),
+                  )
+                ],
+                chartStylingInfo: ChartStylingInfo(
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                  showGrid: true,
+                  borderColor: FlutterFlowTheme.of(context).secondaryText,
+                  borderWidth: 1.0,
+                ),
+                axisBounds: AxisBounds(
+                  minY: 0.0,
+                  maxY: 100.0,
+                ),
+                xAxisLabelInfo: AxisLabelInfo(
+                  title: 'Time',
+                  titleTextStyle: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+                yAxisLabelInfo: AxisLabelInfo(
+                  title: 'Temp',
+                  titleTextStyle: TextStyle(
+                    fontSize: 14.0,
+                  ),
+                  showLabels: true,
+                  labelInterval: 10.0,
+                  labelFormatter: LabelFormatter(
+                    numberFormat: (val) => formatNumber(
+                      val,
+                      formatType: FormatType.percent,
+                    ),
                   ),
                 ),
               ),
