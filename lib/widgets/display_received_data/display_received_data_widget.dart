@@ -55,7 +55,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToTempList(double.parse(_model.receivedData!.last));
             _model.addToTimeListSTR(dateTimeFormat('Hm', getCurrentTimestamp));
             _model.addToTimeList(getCurrentTimestamp);
-            _model.addToHumidityList(double.parse(_model.receivedData!.first));
+            _model.addToHumidityList(
+                (double.parse(_model.receivedData!.first).toInt()).toDouble());
           });
         },
         startImmediately: true,
