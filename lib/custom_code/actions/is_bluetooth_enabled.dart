@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 Future<bool> isBluetoothEnabled() async {
-  final FlutterBluetoothSerial bluetooth = FlutterBluetoothSerial.instance;
-
-  final state = await bluetooth.state;
-  if (state == BluetoothState.STATE_ON) {
+  await FlutterBluePlus.instance.isOn;
+  await Future.delayed(Duration(milliseconds: 100));
+  final state = await FlutterBluePlus.instance.state.first;
+  if (state == BluetoothState.on) {
     return true;
   }
   return false;

@@ -7,41 +7,26 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-
-late BluetoothConnection
-    connection; // Global variable for the Bluetooth connection
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 Future<bool> connectDevice(BTDeviceStruct deviceInfo) async {
-  final device = BluetoothDevice(address: deviceInfo.id, name: deviceInfo.name);
+  final device = BluetoothDevice.fromId(deviceInfo.id, name: deviceInfo.name);
   try {
-    connection = await BluetoothConnection.toAddress(device.address);
-    print('Connected to the device');
-    return true; // Return true if connection is successful
+    await device.connect();
   } catch (e) {
     print(e);
-    return false; // Return false if connection fails
   }
-}
-
-void sendData(String data) async {
-  if (connection != null && connection.isConnected) {
-    connection.output.add(utf8.encode(data + "\r\n"));
-    await connection.output.allSent;
-    print('Data sent');
-  } else {
-    print('No connection established');
+  var hasWriteCharacteristic = false;
+  final services = await device.discoverServices();
+  for (BluetoothService service in services) {
+    for (BluetoothCharacteristic characteristic in service.characteristics) {
+      final isWrite = characteristic.properties.write;
+      if (isWrite) {
+        debugPrint(
+            'Found write characteristic: ${characteristic.uuid}, ${characteristic.properties}');
+        hasWriteCharacteristic = true;
+      }
+    }
   }
-}
-
-void receiveData() async {
-  if (connection != null) {
-    connection.input.listen((Uint8List data) {
-      print('Data incoming: ${ascii.decode(data)}');
-    }).onDone(() {
-      print('Disconnected by remote request');
-    });
-  } else {
-    print('No connection established');
-  }
+  return hasWriteCharacteristic;
 }
