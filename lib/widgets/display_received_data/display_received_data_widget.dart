@@ -180,6 +180,10 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                           color: FlutterFlowTheme.of(context).tertiary,
                           barWidth: 2.0,
                           isCurved: true,
+                          belowBarData: BarAreaData(
+                            show: true,
+                            color: FlutterFlowTheme.of(context).accent3,
+                          ),
                         ),
                       )
                     ],
@@ -256,6 +260,10 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                         settings: LineChartBarData(
                           color: FlutterFlowTheme.of(context).primary,
                           barWidth: 2.0,
+                          belowBarData: BarAreaData(
+                            show: true,
+                            color: FlutterFlowTheme.of(context).accent1,
+                          ),
                         ),
                       )
                     ],
