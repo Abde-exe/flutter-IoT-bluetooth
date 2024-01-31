@@ -36,13 +36,13 @@ class DisplayReceivedDataModel
   void updateTempListSTRAtIndex(int index, Function(String) updateFn) =>
       tempListSTR[index] = updateFn(tempListSTR[index]);
 
-  List<DateTime> timeList = [];
-  void addToTimeList(DateTime item) => timeList.add(item);
-  void removeFromTimeList(DateTime item) => timeList.remove(item);
+  List<String> timeList = [];
+  void addToTimeList(String item) => timeList.add(item);
+  void removeFromTimeList(String item) => timeList.remove(item);
   void removeAtIndexFromTimeList(int index) => timeList.removeAt(index);
-  void insertAtIndexInTimeList(int index, DateTime item) =>
+  void insertAtIndexInTimeList(int index, String item) =>
       timeList.insert(index, item);
-  void updateTimeListAtIndex(int index, Function(DateTime) updateFn) =>
+  void updateTimeListAtIndex(int index, Function(String) updateFn) =>
       timeList[index] = updateFn(timeList[index]);
 
   List<double> tempList = [];

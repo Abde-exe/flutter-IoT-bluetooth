@@ -52,8 +52,8 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             _model.addToHumidityList(_model.receivedData!.first);
             _model.addToTempListSTR(
                 (double.parse(_model.receivedData!.last)).toString());
-            _model.addToTimeList(getCurrentTimestamp);
             _model.addToTempList(double.parse(_model.receivedData!.last));
+            _model.addToTimeList(dateTimeFormat('Hm', getCurrentTimestamp));
           });
         },
         startImmediately: true,
@@ -95,7 +95,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.timeList.first.toString(),
+            _model.timeList.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
