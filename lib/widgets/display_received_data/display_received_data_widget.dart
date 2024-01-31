@@ -49,9 +49,10 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             widget.device!,
           );
           setState(() {
-            _model.dataList = _model.receivedData!.toList().cast<String>();
             _model.addToHumidityList(_model.receivedData!.first);
             _model.addToTempList(_model.receivedData!.last);
+            _model.addToTimeList(dateTimeFromSecondsSinceEpoch(
+                getCurrentTimestamp.secondsSinceEpoch));
           });
         },
         startImmediately: true,
@@ -83,7 +84,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.dataList.first,
+            _model.tempList.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -93,7 +94,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
           child: Text(
-            _model.dataList.last,
+            _model.tempList.first,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Montserrat',
                   lineHeight: 1.4,
@@ -106,7 +107,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
           child: FlutterFlowLineChart(
             data: [
               FFLineChartData(
-                xData: _model.humidityList,
+                xData: _model.timeList,
                 yData: _model.tempList,
                 settings: LineChartBarData(
                   color: FlutterFlowTheme.of(context).primary,

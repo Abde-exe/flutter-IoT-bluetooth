@@ -18,15 +18,6 @@ class DisplayReceivedDataModel
 
   String? data;
 
-  List<String> dataList = [];
-  void addToDataList(String item) => dataList.add(item);
-  void removeFromDataList(String item) => dataList.remove(item);
-  void removeAtIndexFromDataList(int index) => dataList.removeAt(index);
-  void insertAtIndexInDataList(int index, String item) =>
-      dataList.insert(index, item);
-  void updateDataListAtIndex(int index, Function(String) updateFn) =>
-      dataList[index] = updateFn(dataList[index]);
-
   List<String> humidityList = [];
   void addToHumidityList(String item) => humidityList.add(item);
   void removeFromHumidityList(String item) => humidityList.remove(item);
@@ -44,6 +35,15 @@ class DisplayReceivedDataModel
       tempList.insert(index, item);
   void updateTempListAtIndex(int index, Function(String) updateFn) =>
       tempList[index] = updateFn(tempList[index]);
+
+  List<DateTime> timeList = [];
+  void addToTimeList(DateTime item) => timeList.add(item);
+  void removeFromTimeList(DateTime item) => timeList.remove(item);
+  void removeAtIndexFromTimeList(int index) => timeList.removeAt(index);
+  void insertAtIndexInTimeList(int index, DateTime item) =>
+      timeList.insert(index, item);
+  void updateTimeListAtIndex(int index, Function(DateTime) updateFn) =>
+      timeList[index] = updateFn(timeList[index]);
 
   ///  State fields for stateful widgets in this component.
 
