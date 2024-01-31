@@ -7,34 +7,22 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 Future<List<BTDeviceStruct>> findDevices() async {
-  final flutterBlue = FlutterBluePlus.instance;
+  final bluetooth = FlutterBluetoothSerial.instance;
   List<BTDeviceStruct> devices = [];
-  flutterBlue.scanResults.listen((results) {
-    List<ScanResult> scannedDevices = [];
-    for (ScanResult r in results) {
-      if (r.device.name.isNotEmpty) {
-        scannedDevices.add(r);
-      }
-    }
-    scannedDevices.sort((a, b) => b.rssi.compareTo(a.rssi));
-    devices.clear();
-    scannedDevices.forEach((deviceResult) {
+  bluetooth.startDiscovery().listen((result) {
+    if (result.device.name.isNotEmpty) {
       devices.add(BTDeviceStruct(
-        name: deviceResult.device.name,
-        id: deviceResult.device.id.toString(),
-        rssi: deviceResult.rssi,
+        name: result.device.name,
+        id: result.device.address,
+        rssi: result.rssi,
       ));
-    });
+    }
   });
-  final isScanning = flutterBlue.isScanningNow;
-  if (!isScanning) {
-    await flutterBlue.startScan(
-      timeout: const Duration(seconds: 5),
-    );
-  }
-
+  await Future.delayed(const Duration(seconds: 5));
+  bluetooth.cancelDiscovery();
+  devices.sort((a, b) => b.rssi.compareTo(a.rssi));
   return devices;
 }
