@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/widgets/empty_devices/empty_devices_widget.dart';
 import '/widgets/strength_indicator/strength_indicator_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -75,6 +76,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
         _model.isBluetoothEnabled = widget.isBTEnabled;
+        _model.timeListToDelete =
+            functions.createDateTimeList()!.toList().cast<DateTime>();
       });
       if (_model.isBluetoothEnabled) {
         setState(() {

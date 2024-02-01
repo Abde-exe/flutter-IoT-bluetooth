@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/widgets/empty_devices/empty_devices_widget.dart';
 import '/widgets/strength_indicator/strength_indicator_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -56,6 +57,17 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       tempListTodelete.insert(index, item);
   void updateTempListTodeleteAtIndex(int index, Function(double) updateFn) =>
       tempListTodelete[index] = updateFn(tempListTodelete[index]);
+
+  List<DateTime> timeListToDelete = [];
+  void addToTimeListToDelete(DateTime item) => timeListToDelete.add(item);
+  void removeFromTimeListToDelete(DateTime item) =>
+      timeListToDelete.remove(item);
+  void removeAtIndexFromTimeListToDelete(int index) =>
+      timeListToDelete.removeAt(index);
+  void insertAtIndexInTimeListToDelete(int index, DateTime item) =>
+      timeListToDelete.insert(index, item);
+  void updateTimeListToDeleteAtIndex(int index, Function(DateTime) updateFn) =>
+      timeListToDelete[index] = updateFn(timeListToDelete[index]);
 
   ///  State fields for stateful widgets in this page.
 
