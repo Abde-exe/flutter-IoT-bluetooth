@@ -291,6 +291,7 @@ class FlutterFlowChartLegendWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+    margin: EdgeInsets.all(60),
         width: width,
         height: height,
         padding: padding,
@@ -539,3 +540,4 @@ String formatLabel(LabelFormatter formatter, double value) {
   }
   return formatter.defaultFormat.format(value);
 }
+

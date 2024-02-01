@@ -35,6 +35,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
     _model.onUpdate();
   }
 
+
   @override
   void initState() {
     super.initState();
@@ -129,13 +130,26 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     ),
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        '${_model.tempListSTR.last} °C',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Montserrat',
-                              fontSize: 40.0,
-                            ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${_model.tempListSTR.last} °C',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 40.0,
+                                ),
+                          ),
+                          Text(
+                            'Temperature',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 18.0,
+                                ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -154,13 +168,26 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                     ),
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 0.0),
-                      child: Text(
-                        '${_model.humidityListSTR.first} %',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Montserrat',
-                              fontSize: 40.0,
-                            ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${_model.humidityListSTR.first.split('.')[0]} %',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 40.0,
+                                ),
+                          ),
+                          Text(
+                            'Humidity',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 18.0,
+                                ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -172,7 +199,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
               child: Container(
-                width: 385.0,
+                width: double.infinity,
                 height: 400.0,
                 child: Stack(
                   children: [
@@ -211,6 +238,14 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                         titleTextStyle: TextStyle(
                           fontSize: 14.0,
                         ),
+                        showLabels: true,
+                        labelInterval: 10000,
+                        labelTextStyle: TextStyle(
+                          fontSize: 8.0,
+                        ),
+                        labelFormatter: LabelFormatter(
+                          numberFormat: (val) => formatMillisecondsToHHmm(val).toString(),
+                        ),
                       ),
                       yAxisLabelInfo: AxisLabelInfo(
                         title: '\n',
@@ -242,6 +277,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                             EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         padding:
                             EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+
                         borderWidth: 1.0,
                         borderColor: Colors.black,
                         indicatorSize: 10.0,
@@ -256,7 +292,7 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
               child: Container(
-                width: 383.0,
+                width: double.infinity,
                 height: 400.0,
                 child: Stack(
                   children: [
@@ -291,6 +327,14 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                         titleTextStyle: TextStyle(
                           fontSize: 14.0,
                         ),
+                        showLabels: true,
+                        labelInterval: 10000,
+                        labelTextStyle: TextStyle(
+                          fontSize: 8.0,
+                        ),
+                        labelFormatter: LabelFormatter(
+                          numberFormat: (val) => formatMillisecondsToHHmm(val).toString(),
+                        ),
                       ),
                       yAxisLabelInfo: AxisLabelInfo(
                         showLabels: true,
@@ -314,9 +358,9 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
                         height: 50.0,
                         textStyle: FlutterFlowTheme.of(context).bodyMedium,
                         textPadding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         borderWidth: 1.0,
                         borderColor: Colors.black,
                         indicatorSize: 10.0,
@@ -331,4 +375,17 @@ class _DisplayReceivedDataWidgetState extends State<DisplayReceivedDataWidget> {
       ),
     );
   }
+}
+
+DateTime? doubleToDateTime(double value) {
+  final int hour = value ~/ 60;
+  final int minute = (value % 60).toInt();
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day, hour, minute);
+}
+
+String formatMillisecondsToHHmm(double milliseconds) {
+  DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(milliseconds.round());
+  String formattedTime = DateFormat('HH:mm:ss').format(dateTime);
+  return formattedTime;
 }
